@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Shivam Gavhane — Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg: #0f1724;
+      --card: rgba(255,255,255,0.04);
+      --glass: rgba(255,255,255,0.06);
+      --muted: rgba(255,255,255,0.7);
+      --accent1: #7c3aed;
+      --accent2: #06b6d4;
+      --accent3: #ff6b6b;
+      --glass-border: rgba(255,255,255,0.08);
+      --radius: 14px;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;background:linear-gradient(180deg,#031025 0%, #071227 40%, #071026 100%);color:#e6eef8}
+
+    
+    header{position:sticky;top:0;z-index:40;background:linear-gradient(90deg,rgba(7,12,30,0.6), rgba(7,12,30,0.35));backdrop-filter:blur(6px);border-bottom:1px solid var(--glass-border);padding:18px 28px;display:flex;align-items:center;justify-content:space-between}
+    .brand{display:flex;align-items:center;gap:14px}
+    .logo{width:52px;height:52px;border-radius:12px;background:linear-gradient(135deg,var(--accent1),var(--accent2));display:flex;align-items:center;justify-content:center;font-weight:800;font-size:20px;color:white;box-shadow:0 6px 20px rgba(124,58,237,0.18)}
+    nav{display:flex;gap:18px;align-items:center}
+    nav a{color:var(--muted);text-decoration:none;font-weight:600}
+    nav a:hover{color:white}
+
+    
+    .hero{display:grid;grid-template-columns:1fr 420px;gap:30px;align-items:center;padding:56px 6vw}
+    .intro{max-width:760px}
+    .eyebrow{display:inline-block;background:linear-gradient(90deg,var(--accent2),var(--accent1));padding:6px 10px;border-radius:999px;font-weight:700;color:white;font-size:13px;margin-bottom:18px}
+    h1{font-size:40px;margin:0 0 12px;line-height:1.02}
+    p.lead{margin:0 0 18px;color:var(--muted);font-size:17px}
+
+    .cta{display:flex;gap:12px;margin-top:18px}
+    .btn{padding:12px 18px;border-radius:10px;border:none;cursor:pointer;font-weight:700}
+    .btn-primary{background:linear-gradient(90deg,var(--accent1),var(--accent2));box-shadow:0 8px 28px rgba(6,182,212,0.08);color:white}
+    .btn-ghost{background:transparent;border:1px solid var(--glass-border);color:var(--muted)}
+
+    .profile-card{background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));padding:22px;border-radius:16px;border:1px solid var(--glass-border);box-shadow:0 10px 30px rgba(2,6,23,0.6)}
+    .profile-card h3{margin:0 0 6px}
+    .meta{color:var(--muted);font-size:14px}
+
+    
+    .section{padding:48px 6vw}
+    .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}
+    .card{background:var(--card);padding:20px;border-radius:12px;border:1px solid var(--glass-border);box-shadow:0 6px 18px rgba(2,6,23,0.6);transform:translateY(0);transition:transform .36s cubic-bezier(.2,.9,.27,1)}
+    .card:hover{transform:translateY(-8px)}
+
+    .skill-list{display:flex;flex-wrap:wrap;gap:10px}
+    .pill{padding:8px 12px;border-radius:999px;border:1px solid rgba(255,255,255,0.05);background:linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));font-weight:600}
+
+    footer{padding:28px 6vw;color:var(--muted);border-top:1px solid var(--glass-border);display:flex;justify-content:space-between;align-items:center}
+
+    @media (max-width:900px){
+      .hero{grid-template-columns:1fr;gap:18px;padding:36px 5vw}
+      nav{display:none}
+    }
+    @media (max-width:600px){
+      h1{font-size:28px}
+      .hero{padding:28px 4vw}
+      .grid{grid-template-columns:1fr}
+    }
+
+    @media (max-width:480px){
+  .profile-card{
+    text-align:center;
+  }
+  .cta{
+    flex-direction:column;
+  }
+}
+
+    
+    .reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease, transform .6s cubic-bezier(.2,.9,.27,1)}
+    .reveal.visible{opacity:1;transform:none}
+
+    
+    .floating{position:fixed;right:18px;bottom:18px;padding:12px 14px;border-radius:12px;background:linear-gradient(90deg,var(--accent2),var(--accent1));box-shadow:0 12px 34px rgba(4,10,35,0.6);z-index:60;color:white;font-weight:700}
+
+   
+    .section h2{margin:0 0 12px;font-size:22px}
+    .underline{height:4px;width:120px;border-radius:6px;background:linear-gradient(90deg,var(--accent1),var(--accent2));margin-bottom:18px}
+
+    
+    .resume-link{display:inline-block;margin-left:8px;color:var(--accent3);font-weight:700}
+
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <div class="logo">SG</div>
+      <div>
+        <div style="font-weight:800">Shivam Gavhane</div>
+        <div style="font-size:12px;color:var(--muted)">Software Engineer — Frontend & Full Stack</div>
+      </div>
+    </div>
+
+    <nav>
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#experience">Experience</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="intro reveal">
+        <div class="eyebrow">Available for internships & entry roles</div>
+        <h1>Hi, I'm Shivam — Frontend & Full Stack Developer</h1>
+<p class="lead">
+I build responsive, user-friendly web applications using HTML, CSS, JavaScript, React and Java.
+Actively seeking internships and entry-level software developer roles.
+</p>
+
+        <div class="cta">
+          <a class="btn btn-primary" href="#contact">Hire / Contact Me</a>
+          <a class="btn btn-ghost" href="shivam_frontend.pdf" download>Download Resume</a>
+        </div>
+      </div>
+
+      <aside class="profile-card reveal">
+        <h3>Quick Info</h3>
+        <div class="meta">shivamgavhane12345@gmail.com <br><br> 8669125600</div>
+        <div style="height:12px"></div>
+        <p style="margin:0 0 10px;color:var(--muted)">Full Stack Developer </p>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <div class="pill">Java</div>
+          <div class="pill">JavaScript</div>
+          <div class="pill">HTML & CSS</div>
+          <div class="pill">MySQL</div>
+          <div class="pill">React</div>
+        </div>
+      </aside>
+    </section>
+
+    <section id="projects" class="section">
+      <h2>Projects</h2>
+      <div class="underline"></div>
+      <div class="grid">
+        <div class="card reveal">
+          <h3>Sign Language Generation & Detection</h3>
+          <p style="color:var(--muted);margin-top:6px">Jul 2024 — Mar 2025 • Role: Frontend & Designer</p>
+          <ul style="color:var(--muted)">
+  <li>Real-time sign language to text/speech conversion</li>
+  <li>Frontend UI built with HTML, CSS, JavaScript</li>
+  <li>Integrated with CNN-based backend model</li>
+</ul>
+
+<p style="color:var(--accent2);font-size:14px">
+Tech Stack: HTML, CSS, JavaScript, Python, CNN
+</p>
+
+        </div>
+
+        <div class="card reveal">
+          <h3>College Website Dashboard</h3>
+          <p style="color:var(--muted);margin-top:6px">Dec 2023 — Mar 2024 • Role: Frontend, Designer & DB</p>
+          <ul style="color:var(--muted)">
+            <li>Responsive dashboard with student information sections, search, and clean UI implemented with HTML/CSS/JS.</li>
+            <li>Integrated a backend database for student records and designed the navigation and interaction flows.</li>
+          </ul>
+        </div>
+
+        <div class="card reveal">
+          <h3>Other Coursework & Mini Projects</h3>
+          <p style="color:var(--muted);margin-top:6px">Algorithms, DSA practice & small full-stack tasks done during college.</p>
+        </div>
+
+        <div class="card reveal">
+          <h3>Want to see code?</h3>
+          <p style="color:var(--muted);margin-top:6px">I keep projects on GitHub. Link available upon request — happy to share live demos or code walkthroughs during interviews.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience" class="section">
+      <h2>Experience & Education</h2>
+      <div class="underline"></div>
+      <div class="grid">
+        <div class="card reveal">
+          <h3>Education</h3>
+          <p style="color:var(--muted)"><strong>B.E. — Dr. Vithalrao Vikhe Patil College of Engineering (2021 — 2025)</strong><br>CGPA: 6.59</p>
+          <p style="color:var(--muted);margin:6px 0">HSC: 48.77% • SSC: 79.20%</p>
+        </div>
+
+        <div class="card reveal">
+          <h3>Full Stack Developer Intern</h3>
+          <p style="color:var(--muted)"><strong>Technogrowth Software Solutions Pvt. Ltd., Pune</strong><br>Dec 2023 — Jan 2024</p>
+          <ul style="color:var(--muted)">
+            <li>Designed features and improved UX on real projects.</li>
+            <li>Collaborated with team members to debug and optimize code.</li>
+            <li>Gained production-level development experience under deadlines.</li>
+          </ul>
+        </div>
+
+        <div class="card reveal">
+  <h3>Full Stack Developer Trainee</h3>
+  <p style="color:var(--muted)">
+    <strong>SevenMentor Pvt. Ltd., Pune</strong><br>
+    July 2025 - Feb 2026
+  </p>
+  <ul style="color:var(--muted)">
+    <li>Completed hands-on training in Full Stack Development with real-time projects.</li>
+    <li>Worked on frontend technologies like HTML, CSS, JavaScript and React.</li>
+    <li>Developed backend concepts using Java, JDBC and MySQL.</li>
+    <li>Built mini projects including To-Do App and Weather Dashboard.</li>
+    <li>Improved problem-solving skills and understanding of software development lifecycle.</li>
+  </ul>
+</div>
+
+      </div>
+    </section>
+
+    <section id="skills" class="section">
+      <h2>Skills</h2>
+      <div class="underline"></div>
+      <div class="card" style="display:flex;flex-direction:column;gap:12px">
+        <div style="display:flex;flex-wrap:wrap;gap:10px">
+          <div class="pill">OOP</div>
+          <div class="pill">Data Structures & Algorithms</div>
+          <div class="pill">Java</div>
+          <div class="pill">JavaScript</div>
+          <div class="pill">HTML & CSS</div>
+          <div class="pill">Bootstrap</div>
+          <div class="pill">Web API</div>
+          <div class="pill">MySQL / SQL Server</div>
+          <div class="pill">MongoDB (basic)</div>
+        </div>
+        <div style="color:var(--muted)">Tools: Visual Studio, Git, GitHub</div>
+      </div>
+    </section>
+
+    <section class="section">
+  <h2>Skills in Action</h2>
+  <div class="underline"></div>
+  <div class="grid">
+    <div class="card">
+      <h3>Frontend Development</h3>
+      <p class="meta">HTML, CSS, JavaScript, React</p>
+      <p class="meta">Built responsive dashboards, to-do apps, portfolio sites</p>
+    </div>
+    <div class="card">
+      <h3>Backend & Database</h3>
+      <p class="meta">Java, JDBC, MySQL</p>
+      <p class="meta">CRUD operations, authentication, data handling</p>
+    </div>
+  </div>
+</section>
+
+
+    <section id="contact" class="section">
+      <h2>Contact</h2>
+      <div class="underline"></div>
+      <div class="grid">
+        <div class="card reveal">
+          <h3>Get in touch</h3>
+          <p style="color:var(--muted)">Email: <strong>shivamgavhane12345@gmail.com</strong><br>Phone: <strong>8669125600</strong></p>
+          <p style="color:var(--muted)">LinkedIn: <a href="https://www.linkedin.com/in/gavhane-shivam-a9977a195" style="color:var(--accent2)">View profile</a></p>
+        </div>
+
+        <div class="card reveal">
+          <h3>Why hire me?</h3>
+          <ul style="color:var(--muted)">
+            <li>Hands-on with frontend — I care deeply about UX and performance.</li>
+            <li>Comfortable learning new tools quickly and collaborating in teams.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <div class="floating reveal">Available to interview — let's connect</div>
+
+  <footer>
+    <div>© Shivam Gavhane — <span style="color:var(--muted)">2025</span></div>
+    <div>Resume: <a class="btn btn-primary" href="/mnt/data/Shivam_Gavhane-8669125600.docx" download>Download</a></div>
+    <p style="color:var(--muted)">
+Open to: Internship | Fresher | Junior Developer Roles
+</p>
+
+  </footer>
+
+  <script>
+    
+    const observer = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting){
+          e.target.classList.add('visible');
+        }
+      })
+    },{threshold:0.12});
+
+    document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+
+   
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', (ev)=>{
+        ev.preventDefault();
+        const id = a.getAttribute('href').slice(1);
+        const target = document.getElementById(id);
+        if(target) target.scrollIntoView({behavior:'smooth',block:'start'});
+      })
+    });
+
+    
+    const float = document.querySelector('.floating');
+    if(float){
+      setInterval(()=>{
+        float.animate([{transform:'translateY(0)'},{transform:'translateY(-6px)'},{transform:'translateY(0)'}],{duration:2800,iterations:1});
+      },3200);
+    }
+  </script>
+</body>
+</html>
